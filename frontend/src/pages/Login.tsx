@@ -1,16 +1,30 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import api from "../api/axios";
 import AuthService from "../auth/AuthService";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const oauthBaseUrl = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api").replace(/\/api\/?$/, "");
 
   const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const oauthError = (location.state as { oauthError?: string } | null)?.oauthError;
+    if (oauthError) {
+      setError(oauthError);
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, [location.pathname, location.state, navigate]);
+
+  const handleSocialLogin = (provider: "google" | "facebook") => {
+    window.location.href = `${oauthBaseUrl}/oauth2/authorization/${provider}`;
+  };
 
   // const handleLogin = () => {
   //   // Login logic
@@ -26,19 +40,16 @@ const Login = () => {
       setLoading(true);
       setError("");
 
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        {
-          username,
-          password,
-        }
-      );
+      const response = await api.post("/auth/login", {
+        username,
+        password,
+      });
 
       const token = response.data.token;
 
-      AuthService.login(token);
+      AuthService.login(token, response.data.user ?? username);
 
-      navigate("/");
+      navigate(response.data.user?.passwordChangeRequired ? "/profile" : "/");
     } catch (err: any) {
       console.error(err);
 
@@ -53,15 +64,15 @@ const Login = () => {
 
 
   return (
-    <div className="card card-outline card-primary shadow">
+    <div className="card card-outline card-primary shadow auth-card">
 
       <div className="card-header text-center">
         <h2 className="fw-bold">
-          AI Mechanic
+          Kusina AI
         </h2>
 
         <p className="text-muted mb-0">
-          Sign in to continue
+          Sign in to plan your next home-cooked menu
         </p>
       </div>
 
@@ -139,13 +150,51 @@ const Login = () => {
 
           </div>
 
+          <div className="text-center my-3">
+            <small className="text-muted">or continue with</small>
+          </div>
+
+          <div className="d-grid gap-2">
+            <button
+              type="button"
+              className="btn btn-outline-dark"
+              onClick={() => handleSocialLogin("google")}
+            >
+              <i className="bi bi-google me-2"></i>
+              Continue with Google
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => handleSocialLogin("facebook")}
+            >
+              <i className="bi bi-facebook me-2"></i>
+              Continue with Facebook
+            </button>
+          </div>
+
+          <div className="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
+            <Link to="/forgot-password" className="small text-decoration-none">
+              Forgot password?
+            </Link>
+
+            <Link to="/register" className="small text-decoration-none">
+              Create account
+            </Link>
+
+            <Link to="/about-us" className="small text-decoration-none">
+              About Us
+            </Link>
+          </div>
+
         </form>
 
       </div>
 
       <div className="card-footer text-center">
         <small className="text-muted">
-          © 2026 AI Mechanic
+          Warm meals start here
         </small>
       </div>
 

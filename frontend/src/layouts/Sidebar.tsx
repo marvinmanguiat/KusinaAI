@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import AuthService from "../auth/AuthService";
 
 export default function Sidebar() {
   const location = useLocation();
+  const canManageUsers = AuthService.hasRole("ROLE_ADMIN");
 
   const active = (path: string) =>
     location.pathname === path ? "nav-link active" : "nav-link";
@@ -11,7 +13,7 @@ export default function Sidebar() {
       <div className="sidebar-brand">
         <a href="#" className="brand-link">
            <i className="nav-icon fas fa-robot"></i>
-          <span className="brand-text fw-light"> AI Mechanic          
+          <span className="brand-text fw-light"> Kusina AI           
          </span>
         </a>
       </div>
@@ -20,8 +22,20 @@ export default function Sidebar() {
           <ul className="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
             <li className="nav-item">
               <Link to="/dashboard" className={active("/dashboard")}>
-                <i className="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p>
+                <i className="nav-icon fas fa-search"></i>
+                <p>Menu Search</p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/menu-history" className={active("/menu-history")}>
+                <i className="nav-icon fas fa-history"></i>
+                <p>Menu History</p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/about" className={active("/about")}>
+                <i className="nav-icon fas fa-info-circle"></i>
+                <p>About Us</p>
               </Link>
             </li>
             <li className="nav-item">
@@ -30,12 +44,14 @@ export default function Sidebar() {
                 <p>Profile</p>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/users" className={active("/users")}>
-                <i className="nav-icon fas fa-user-cog"></i>
-                <p>Users</p>
-              </Link>
-            </li>
+            {canManageUsers && (
+              <li className="nav-item">
+                <Link to="/users" className={active("/users")}>
+                  <i className="nav-icon fas fa-user-cog"></i>
+                  <p>Users</p>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
