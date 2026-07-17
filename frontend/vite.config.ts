@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    outDir: '../target/frontend',
+    outDir: '../src/main/resources/static',
     emptyOutDir: true
   },
 
