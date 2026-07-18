@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import kusinaLogo from "../assets/kusina-logo.svg";
+import kusinaLogo from "../assets/kusina-ai.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,8 +35,6 @@ const Login = () => {
           alt="Kusina AI"
           className="k-login-logo"
         />
-
-        <h2 className="fw-bold">Kusina AI</h2>
 
         <p className="text-muted mb-0">
           Sign in to plan your next home-cooked menu
