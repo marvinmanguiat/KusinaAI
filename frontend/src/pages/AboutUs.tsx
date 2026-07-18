@@ -1,7 +1,4 @@
-import AuthService from "../auth/AuthService";
-
 const AboutUs = () => {
-    const currentUser = AuthService.getCurrentUser();
     const authorName =  "Marvin Manguiat";
     const authorEmail = "marvin.manguiat.u@gmail.com";
     const authorTelephone = "0437734772";
