@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import AuthService from "../auth/AuthService";
+import kusinaLogo from "../assets/kusina-logo.svg";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -24,6 +25,9 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
 >
   <i className="bi bi-list"></i>
 </a>
+        </li>
+        <li className="nav-item d-none d-md-flex align-items-center ms-2">
+          <img src={kusinaLogo} alt="Kusina AI" className="k-navbar-logo" />
         </li>
       </ul>
 

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Privacy from "./pages/Privacy";
 
 import AuthLayout from "./layouts/AuthLayout";
 import AdminLayout from "./layouts/AdminLayout";
@@ -28,8 +29,11 @@ function App() {
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
                 {/* Public About page */}
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/oauth/callback" element={<OAuthCallback />} />
+  {/* Completely Public Pages */}
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/oauth/callback" element={<OAuthCallback />} />
+
 
                 {/* Public Routes */}
                 <Route element={<PublicRoute />}>
@@ -37,6 +41,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/forgot-password" element={<ForgotPassword />} />
+                       
                     </Route>
                 </Route>
 

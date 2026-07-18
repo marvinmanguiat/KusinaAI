@@ -521,6 +521,14 @@ h4,
     color: #fff5ed !important;
 }
 
+.k-brand-logo {
+    display: block;
+    width: min(210px, 100%);
+    height: auto;
+    margin: 0.55rem auto 0.35rem;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.22));
+}
+
 .sidebar-menu .nav-link {
     margin: 0.2rem 0.65rem;
     border-radius: 16px;
@@ -535,6 +543,12 @@ h4,
 .k-navbar {
     background: rgba(255, 251, 245, 0.78) !important;
     backdrop-filter: blur(18px);
+}
+
+.k-navbar-logo {
+    width: 128px;
+    height: auto;
+    display: block;
 }
 
 .k-navbar-copy {
@@ -586,8 +600,25 @@ h4,
         font-size: 2rem;
     }
 
+    .k-navbar-logo {
+        width: 102px;
+    }
+
     .card,
     .small-box {
         border-radius: 22px;
     }
+}
+
+.k-auth-logo {
+    width: min(230px, 85%);
+    height: auto;
+    margin-bottom: 0.25rem;
+}
+
+.k-login-logo {
+    width: min(190px, 72%);
+    height: auto;
+    margin: 0 auto 0.75rem;
+    display: block;
 }

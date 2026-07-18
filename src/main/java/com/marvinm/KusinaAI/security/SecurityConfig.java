@@ -51,16 +51,53 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, "/", "/index.html", "/favicon.svg", "/favicon.ico", "/oauth/callback").permitAll()
-                .requestMatchers(HttpMethod.GET, "/assets/**", "/error").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/auth/forgot-password").permitAll()
-                .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
-                .anyRequest().authenticated()
-            )
+.authorizeHttpRequests(auth -> auth
+    // Public static resources
+    .requestMatchers(
+        HttpMethod.GET,
+        "/",
+        "/index.html",
+        "/privacy",
+        "/privacy.html",
+        "/about-us",
+        "/favicon.ico",
+        "/favicon.svg",
+        "/kusina-logo.svg",
+        "/icons.svg",
+        "/assets/**",
+        "/error"
+    ).permitAll()
+
+    // React static files (after build)
+    .requestMatchers(
+        "/css/**",
+        "/js/**",
+        "/images/**",
+        "/fonts/**",
+        "/webjars/**"
+    ).permitAll()
+
+    // Authentication endpoints
+    .requestMatchers(
+        "/oauth2/**",
+        "/login/**",
+        "/login/oauth2/**",
+        "/oauth/callback"
+    ).permitAll()
+
+    // Public REST APIs
+    .requestMatchers(HttpMethod.POST,
+        "/api/auth/login",
+        "/api/auth/register",
+        "/api/auth/forgot-password"
+    ).permitAll()
+
+    // H2 Console
+    .requestMatchers("/h2-console/**").permitAll()
+
+    // Everything else requires authentication
+    .anyRequest().authenticated()
+)
             .oauth2Login(oauth -> oauth
                 .successHandler(oAuth2AuthenticationSuccessHandler)
                 .failureHandler(oAuth2AuthenticationFailureHandler)

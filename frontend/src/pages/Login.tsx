@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import api from "../api/axios";
-import AuthService from "../auth/AuthService";
+import kusinaLogo from "../assets/kusina-logo.svg";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const oauthBaseUrl = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api").replace(/\/api\/?$/, "");
 
-  const [username, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const oauthBaseUrl = (
+    import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api"
+  ).replace(/\/api\/?$/, "");
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const oauthError = (location.state as { oauthError?: string } | null)?.oauthError;
+    const oauthError = (
+      location.state as { oauthError?: string } | null
+    )?.oauthError;
+
     if (oauthError) {
       setError(oauthError);
       navigate(location.pathname, { replace: true, state: null });
@@ -26,50 +27,16 @@ const Login = () => {
     window.location.href = `${oauthBaseUrl}/oauth2/authorization/${provider}`;
   };
 
-  // const handleLogin = () => {
-  //   // Login logic
-  //   navigate("/dashboard");
-  // };
-
-  const handleLogin = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-
-    try {
-      setLoading(true);
-      setError("");
-
-      const response = await api.post("/auth/login", {
-        username,
-        password,
-      });
-
-      const token = response.data.token;
-
-      AuthService.login(token, response.data.user ?? username);
-
-      navigate(response.data.user?.passwordChangeRequired ? "/profile" : "/");
-    } catch (err: any) {
-      console.error(err);
-
-      setError(
-        err?.response?.data?.message ||
-          "Login failed due to  " + err.message
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
   return (
     <div className="card card-outline card-primary shadow auth-card">
-
       <div className="card-header text-center">
-        <h2 className="fw-bold">
-          Kusina AI
-        </h2>
+        <img
+          src={kusinaLogo}
+          alt="Kusina AI"
+          className="k-login-logo"
+        />
+
+        <h2 className="fw-bold">Kusina AI</h2>
 
         <p className="text-muted mb-0">
           Sign in to plan your next home-cooked menu
@@ -84,120 +51,67 @@ const Login = () => {
           </div>
         )}
 
-        <form onSubmit={handleLogin}>
+        <div className="alert alert-info text-center">
+          <strong>Social Login Only</strong>
+          <br />
+          Please continue using your Google or Facebook account.
+        </div>
 
-          <div className="mb-3">
-            <label className="form-label">
-              Email
-            </label>
+        <div className="d-grid gap-2">
 
-            <div className="input-group">
+          <button
+            type="button"
+            className="btn btn-outline-dark"
+            onClick={() => handleSocialLogin("google")}
+          >
+            <i className="bi bi-google me-2"></i>
+            Continue with Google
+          </button>
 
-              <span className="input-group-text">
-                <i className="bi bi-envelope"></i>
-              </span>
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={() => handleSocialLogin("facebook")}
+          >
+            <i className="bi bi-facebook me-2"></i>
+            Continue with Facebook
+          </button>
 
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Enter email"
-                value={username}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
-                required
-              />
+        </div>
 
-            </div>
-          </div>
+        <hr className="my-4" />
 
-          <div className="mb-3">
-            <label className="form-label">
-              Password
-            </label>
+        <div className="text-center">
+          <small className="text-muted">
+            Email/password sign-in is temporarily unavailable.
+          </small>
+        </div>
 
-            <div className="input-group">
+        <div className="d-flex justify-content-center align-items-center mt-3 flex-wrap gap-3">
 
-              <span className="input-group-text">
-                <i className="bi bi-lock"></i>
-              </span>
+          <Link
+            to="/about-us"
+            className="small text-decoration-none"
+          >
+            About Us
+          </Link>
 
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) =>
-                  setPassword(e.target.value)
-                }
-                required
-              />
+          <Link
+            to="/privacy"
+            className="small text-decoration-none"
+          >
+            Privacy Policy
+          </Link>
 
-            </div>
-          </div>
-
-          <div className="d-grid">
-
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={loading}
-            >
-              {loading
-                ? "Signing In... Please wait"
-                : "Sign In"}
-            </button>
-
-          </div>
-
-          <div className="text-center my-3">
-            <small className="text-muted">or continue with</small>
-          </div>
-
-          <div className="d-grid gap-2">
-            <button
-              type="button"
-              className="btn btn-outline-dark"
-              onClick={() => handleSocialLogin("google")}
-            >
-              <i className="bi bi-google me-2"></i>
-              Continue with Google
-            </button>
-
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => handleSocialLogin("facebook")}
-            >
-              <i className="bi bi-facebook me-2"></i>
-              Continue with Facebook
-            </button>
-          </div>
-
-          <div className="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">
-            <Link to="/forgot-password" className="small text-decoration-none">
-              Forgot password?
-            </Link>
-
-            <Link to="/register" className="small text-decoration-none">
-              Create account
-            </Link>
-
-            <Link to="/about-us" className="small text-decoration-none">
-              About Us
-            </Link>
-          </div>
-
-        </form>
+        </div>
 
       </div>
 
       <div className="card-footer text-center">
         <small className="text-muted">
-          Warm meals start here
+          Warm meals start here 🍳
         </small>
       </div>
-
     </div>
   );
 };

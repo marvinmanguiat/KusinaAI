@@ -1,9 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
+import kusinaLogo from "../assets/kusina-logo.svg";
 
 export default function AuthLayout() {
     return (
         <div className="auth-shell">
             <div className="auth-panel d-none d-lg-flex">
+                <img src={kusinaLogo} alt="Kusina AI" className="k-auth-logo" />
                 <span className="auth-kicker">Kusina AI</span>
                 <h1>Cook from cravings, not guesswork.</h1>
                 <p>
