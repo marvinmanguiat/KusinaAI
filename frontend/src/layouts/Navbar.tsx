@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import AuthService from "../auth/AuthService";
-import kusinaLogo from "../assets/kusina-logo.svg";
 
 interface NavbarProps {
   toggleSidebar: () => void;

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import AuthService from "../auth/AuthService";
-import kusinaLogo from "../assets/kusina-logo.svg";
+import kusinaLogo from "../assets/kusina-ai.png";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -11,11 +11,15 @@ export default function Sidebar() {
 
   return (
    <aside className="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-      <div className="sidebar-brand">
-        <a href="#" className="brand-link">
-          <img src={kusinaLogo} alt="Kusina AI" className="k-brand-logo" />
-        </a>
-      </div>
+<div className="sidebar-brand">
+  <Link to="/dashboard" className="brand-link">
+    <img
+      src={kusinaLogo}
+      alt="KusinaAI"
+      className="k-brand-logo"
+    />
+  </Link>
+</div>
       <div className="sidebar-wrapper">
         <nav className="mt-2">
           <ul className="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu">
