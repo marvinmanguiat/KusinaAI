@@ -19,7 +19,7 @@ public class OAuthCallbackController {
 
     private final AppSecurityProperties properties;
 
-    @Value("${app.security.oauth2.frontend-callback-url:http://localhost:5173/oauth/callback}")
+    @Value("${app.security.oauth2.frontend-callback-url}")
     private String frontendCallbackUrl;
 
     public OAuthCallbackController(AppSecurityProperties properties) {
@@ -54,7 +54,7 @@ public class OAuthCallbackController {
             return trimTrailingSlash(allowedOrigin) + "/oauth/callback";
         }
 
-        return "http://localhost:5173/oauth/callback";
+        return "/oauth/callback";
     }
 
     private boolean pointsToCurrentApplication(String callbackUrl, HttpServletRequest request) {

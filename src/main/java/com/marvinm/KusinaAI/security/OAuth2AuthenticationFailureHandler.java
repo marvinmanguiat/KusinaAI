@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OAuth2AuthenticationFailureHandler implements AuthenticationFailureHandler {
 
-    @Value("${app.security.oauth2.frontend-callback-url:http://localhost:5173/oauth/callback}")
+    @Value("${app.security.oauth2.frontend-callback-url}")
     private String frontendCallbackUrl;
 
     @Override

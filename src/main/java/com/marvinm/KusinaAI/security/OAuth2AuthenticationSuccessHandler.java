@@ -25,7 +25,7 @@ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccess
     private final JwtService jwtService;
     private final AuthService authService;
 
-    @Value("${app.security.oauth2.frontend-callback-url:http://localhost:5173/oauth/callback}")
+    @Value("${app.security.oauth2.frontend-callback-url}")
     private String frontendCallbackUrl;
 
     public OAuth2AuthenticationSuccessHandler(JwtService jwtService, AuthService authService) {
