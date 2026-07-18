@@ -62,7 +62,6 @@ const AboutUs = () => {
                                         <div className="card-body">
                                             <ul className="mb-0 k-about-list">
                                                 <li>Search for a specific menu or dish using Google Gemini.</li>
-                                                <li>Return recipe output in JSON format for consistency and portability.</li>
                                                 <li>Show menu name, ingredients, and step-by-step instructions.</li>
                                                 <li>Scale ingredient quantities based on the number of persons.</li>
                                                 <li>Save successful searches in Menu History for quick reuse.</li>
