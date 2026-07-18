@@ -7,7 +7,7 @@ const Login = () => {
   const location = useLocation();
 
   const oauthBaseUrl = (
-    import.meta.env.VITE_API_BASE_URL || "https://kusinaai.up.railway.app/api"
+    import.meta.env.VITE_API_BASE_URL || "https://kusinaai-production.up.railway.app/api"
   ).replace(/\/api\/?$/, "");
 
   const [error, setError] = useState("");

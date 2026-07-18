@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://kusinaai.up.railway.app',
+        target: 'https://kusinaai-production.up.railway.app',
         changeOrigin: true
       }
     }
