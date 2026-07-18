@@ -26,9 +26,7 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
   <i className="bi bi-list"></i>
 </a>
         </li>
-        <li className="nav-item d-none d-md-flex align-items-center ms-2">
-          <img src={kusinaLogo} alt="Kusina AI" className="k-navbar-logo" />
-        </li>
+
       </ul>
 
       {/* Right navbar */}
