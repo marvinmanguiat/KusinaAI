@@ -2,7 +2,7 @@ import axios from "axios";
 import AuthService from "../auth/AuthService";
 
 const api = axios.create({
-    baseURL: "/api",
+    baseURL: "https://kusinaai-production.up.railway.app/api",
 });
 
 api.interceptors.request.use(config => {
