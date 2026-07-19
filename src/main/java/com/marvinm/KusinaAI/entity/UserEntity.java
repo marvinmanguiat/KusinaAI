@@ -27,8 +27,11 @@ public class UserEntity {
     @Column(unique = true)
     private String mobilePhone;
 
-    @Lob
-    @Column(columnDefinition = "CLOB")
+    // @Lob
+    // @Column(columnDefinition = "CLOB")
+    // private String avatarUrl;
+
+   @Column(columnDefinition = "TEXT")
     private String avatarUrl;
 
     @Column(nullable = false)

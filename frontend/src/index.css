@@ -617,7 +617,7 @@ h4,
 }
 
 .k-login-logo {
-    width: min(190px, 72%);
+    width: min(180px, 72%);
     height: auto;
     margin: 0 auto 0.75rem;
     display: block;

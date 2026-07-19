@@ -92,7 +92,7 @@ public class SecurityConfig {
     ).permitAll()
 
     // H2 Console
-    .requestMatchers("/h2-console/**").permitAll()
+    //.requestMatchers("/h2-console/**").permitAll()
 
     // Everything else requires authentication
     .anyRequest().authenticated()

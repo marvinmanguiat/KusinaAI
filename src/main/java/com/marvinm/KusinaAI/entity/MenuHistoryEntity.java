@@ -34,8 +34,12 @@ public class MenuHistoryEntity {
     @Column(nullable = false)
     private int servings;
 
-    @Lob
-    @Column(columnDefinition = "CLOB", nullable = false)
+    // @Lob
+    // @Column(columnDefinition = "CLOB", nullable = false)
+    // private String menuJson;
+
+      
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String menuJson;
 
     @Column(nullable = false)
