@@ -182,6 +182,9 @@
                                 <include>*.html</include>
                                 <include>favicon.ico</include>
                             </includes>
+                  <excludes>
+                    <exclude>assets/kusina-ai.apk</exclude>
+                </excludes>
 
                         </fileset>
 

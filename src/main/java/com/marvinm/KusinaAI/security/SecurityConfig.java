@@ -57,7 +57,7 @@ public class SecurityConfig {
         HttpMethod.GET,
         "/",
         "/index.html",
-        "/kusinaai.apk",
+        "/kusina-ai.apk",
         "/about-us",
         "/favicon.ico",
         "/favicon.svg",
