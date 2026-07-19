@@ -151,45 +151,12 @@
                 <artifactId>maven-compiler-plugin</artifactId>
 
                 <configuration>
-
                     <annotationProcessorPaths>
-
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </path>
-
                     </annotationProcessorPaths>
-
-                </configuration>
-
-            </plugin>
-
-            <!-- Clean React build -->
-
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-
-                <configuration>
-
-                    <filesets>
-
-                        <fileset>
-                            <directory>src/main/resources/static</directory>
-
-                            <includes>
-                                <include>assets/**</include>
-                                <include>*.html</include>
-                                <include>favicon.ico</include>
-                            </includes>
-                  <excludes>
-                    <exclude>assets/kusina-ai.apk</exclude>
-                </excludes>
-
-                        </fileset>
-
-                    </filesets>
-
                 </configuration>
 
             </plugin>
@@ -197,7 +164,6 @@
             <!-- React Build -->
 
             <plugin>
-
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
@@ -205,9 +171,7 @@
                 <executions>
 
                     <execution>
-
                         <id>npm-install</id>
-
                         <phase>generate-resources</phase>
 
                         <goals>
@@ -215,7 +179,6 @@
                         </goals>
 
                         <configuration>
-
                             <workingDirectory>${project.basedir}/frontend</workingDirectory>
 
                             <executable>npm</executable>
@@ -223,7 +186,6 @@
                             <arguments>
                                 <argument>install</argument>
                             </arguments>
-
                         </configuration>
 
                     </execution>
@@ -231,7 +193,6 @@
                     <execution>
 
                         <id>npm-build</id>
-
                         <phase>generate-resources</phase>
 
                         <goals>
@@ -248,6 +209,54 @@
                                 <argument>run</argument>
                                 <argument>build</argument>
                             </arguments>
+
+                        </configuration>
+
+                    </execution>
+
+                </executions>
+
+            </plugin>
+
+            <!-- Copy Android APK -->
+
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+
+                <executions>
+
+                    <execution>
+
+                        <id>copy-apk</id>
+
+                        <phase>prepare-package</phase>
+
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+
+                        <configuration>
+
+                            <outputDirectory>
+                                ${project.build.outputDirectory}/static/assets
+                            </outputDirectory>
+
+                            <resources>
+
+                                <resource>
+
+                                    <directory>${project.basedir}/apk</directory>
+
+                                    <includes>
+                                        <include>*.apk</include>
+                                    </includes>
+
+                                </resource>
+
+                            </resources>
 
                         </configuration>
 
