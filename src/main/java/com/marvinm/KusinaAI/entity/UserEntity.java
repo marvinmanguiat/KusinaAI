@@ -9,7 +9,10 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import org.hibernate.envers.Audited;
 
+
+@Audited
 @Entity
 @Table(name = "users")
 public class UserEntity {

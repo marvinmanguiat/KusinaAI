@@ -112,6 +112,27 @@
             <scope>runtime</scope>
         </dependency>
 
+
+
+            <!-- Hibernate Envers -->
+    <dependency>
+        <groupId>org.hibernate.orm</groupId>
+        <artifactId>hibernate-envers</artifactId>
+    </dependency>
+
+    <!-- Flyway -->
+    <dependency>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-core</artifactId>
+    </dependency>
+
+    <!-- PostgreSQL Flyway support -->
+    <dependency>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-database-postgresql</artifactId>
+    </dependency>
+    
+
         <!-- Test -->
 
         <dependency>
