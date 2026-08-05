@@ -80,8 +80,6 @@ public class SecurityConfig {
     .requestMatchers(
         "/oauth2/**",
         "/login/**",
-        "/register/**",
-        "/forgot-password/**",
         "/login/oauth2/**",
         "/oauth/callback"
     ).permitAll()

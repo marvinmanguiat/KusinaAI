@@ -82,14 +82,6 @@ const Login = () => {
           <Link to="/privacy" className="small text-decoration-none">
             Privacy Policy
           </Link>
-
-          <Link to="/register" className="small text-decoration-none">
-            Register
-          </Link>
-
-          <Link to="/forgot-password" className="small text-decoration-none">
-            Forgot password?
-          </Link>
         </div>
       </div>
 
