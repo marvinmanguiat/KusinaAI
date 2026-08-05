@@ -1,6 +1,7 @@
 const AboutUs = () => {
     const authorName =  "Marvin Manguiat";
     const authorEmail = "marvin.manguiat.u@gmail.com";
+    const authorWebsite = "marvinmanguiat.com";
     const authorTelephone = "0437734772";
 
     return (
@@ -91,6 +92,7 @@ const AboutUs = () => {
                                                     <h4 className="h6 mb-1">{authorName}</h4>
                                                     <p className="k-about-muted mb-1">Official Email: {authorEmail}</p>
                                                     <p className="k-about-muted mb-0">Telephone: {authorTelephone}</p>
+                                                    <p className="k-about-muted mb-0">Website: {authorWebsite}</p>
                                                 </div>
                                             </div>
 
