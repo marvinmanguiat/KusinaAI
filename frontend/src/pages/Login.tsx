@@ -7,15 +7,15 @@ const Login = () => {
   const location = useLocation();
 
   const oauthBaseUrl = (
-    import.meta.env.VITE_API_BASE_URL || "https://kusinaai-production.up.railway.app/api"
+    import.meta.env.VITE_API_BASE_URL ||
+    "https://kusinaai-production.up.railway.app/api"
   ).replace(/\/api\/?$/, "");
 
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const oauthError = (
-      location.state as { oauthError?: string } | null
-    )?.oauthError;
+    const oauthError = (location.state as { oauthError?: string } | null)
+      ?.oauthError;
 
     if (oauthError) {
       setError(oauthError);
@@ -30,11 +30,7 @@ const Login = () => {
   return (
     <div className="card card-outline card-primary shadow auth-card">
       <div className="card-header text-center">
-        <img
-          src={kusinaLogo}
-          alt="Kusina AI"
-          className="k-login-logo"
-        />
+        <img src={kusinaLogo} alt="Kusina AI" className="k-login-logo" />
 
         <p className="text-muted mb-0">
           Sign in to plan your next home-cooked menu
@@ -42,12 +38,7 @@ const Login = () => {
       </div>
 
       <div className="card-body">
-
-        {error && (
-          <div className="alert alert-danger">
-            {error}
-          </div>
-        )}
+        {error && <div className="alert alert-danger">{error}</div>}
 
         <div className="alert alert-info text-center">
           <strong>Social Login Only</strong>
@@ -56,7 +47,6 @@ const Login = () => {
         </div>
 
         <div className="d-grid gap-2">
-
           <button
             type="button"
             className="btn btn-outline-dark"
@@ -74,7 +64,6 @@ const Login = () => {
             <i className="bi bi-facebook me-2"></i>
             Continue with Facebook
           </button>
-
         </div>
 
         <hr className="my-4" />
@@ -86,29 +75,26 @@ const Login = () => {
         </div>
 
         <div className="d-flex justify-content-center align-items-center mt-3 flex-wrap gap-3">
-
-          <Link
-            to="/about-us"
-            className="small text-decoration-none"
-          >
+          <Link to="/about-us" className="small text-decoration-none">
             About Us
           </Link>
 
-          <Link
-            to="/privacy"
-            className="small text-decoration-none"
-          >
+          <Link to="/privacy" className="small text-decoration-none">
             Privacy Policy
           </Link>
 
-        </div>
+          <Link to="/register" className="small text-decoration-none">
+            Register
+          </Link>
 
+          <Link to="/forgot-password" className="small text-decoration-none">
+            Forgot password?
+          </Link>
+        </div>
       </div>
 
       <div className="card-footer text-center">
-        <small className="text-muted">
-          Warm meals start here 🍳
-        </small>
+        <small className="text-muted">Warm meals start here 🍳</small>
       </div>
     </div>
   );
