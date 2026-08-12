@@ -63,17 +63,17 @@
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
-        <!-- <dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency> -->
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <scope>runtime</scope>
-</dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
 
 <dependency>
@@ -111,8 +111,6 @@
             <version>0.12.6</version>
             <scope>runtime</scope>
         </dependency>
-
-
 
             <!-- Hibernate Envers -->
     <dependency>
