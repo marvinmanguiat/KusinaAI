@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 COPY . .
 
-RUN ./mvnw -B -DskipTests package
+RUN chmod +x mvnw && ./mvnw -B -DskipTests package
 
 FROM eclipse-temurin:17-jre-jammy AS runtime
 
