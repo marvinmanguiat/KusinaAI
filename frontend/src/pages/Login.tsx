@@ -18,7 +18,7 @@ const Login = () => {
 
   const oauthBaseUrl = (
     import.meta.env.VITE_API_BASE_URL ||
-    "http://localhost:8080/api"
+    "https://kusinaai-production.up.railway.app/api"
   ).replace(/\/api\/?$/, "");
 
   const [error, setError] = useState("");
