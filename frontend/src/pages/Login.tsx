@@ -49,7 +49,7 @@ const Login = () => {
       setError("");
 
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "https://kusinaai-production.up.railway.app/api/auth/login",
         {
           username,
           password,
